@@ -1,5 +1,17 @@
+<mat-toolbar [ngClass]="'app-toolbar'">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <p>HARS</p>
+</mat-toolbar>
 
-<router-outlet>
 
-</router-outlet>
-
+<mat-sidenav-container>
+    <mat-sidenav #snav mode="side" opened>
+        <mat-list *ngFor="let item of menuData">
+            <a mat-button routerLink="/{{item.path}}">{{item.item}}</a>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content [ngClass]="'navcontent'">
+        <router-outlet>
+        </router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

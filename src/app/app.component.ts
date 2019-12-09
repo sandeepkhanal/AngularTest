@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularTest';
+  menuData: any[]=[
+    {item:'Hotel',path:'hotel'},
+    {item:'Customer',path:'customer'}
+  ];
+
 }
+

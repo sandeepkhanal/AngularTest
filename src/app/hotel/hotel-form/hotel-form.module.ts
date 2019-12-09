@@ -8,6 +8,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import { HotelFormComponent } from './hotel-form.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+
 
 
 
@@ -22,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ]
 })
 export class HotelFormModule { }

@@ -59,8 +59,13 @@ export class HotelComponent implements OnInit,OnDestroy {
         tempArray[this.selectedRow]={...response};
         this.hotelData=tempArray;
         const snackBarRef=this.snackBar.open("Hotel Updated");
+        this.selectedRow= null;
       }
     });
+  }
+  else{
+    const snackBarRef=this.snackBar.open("Please Select Hotel");
+
   }
   }
 
@@ -73,8 +78,12 @@ export class HotelComponent implements OnInit,OnDestroy {
       tempArray.splice(this.selectedRow,1);
       this.hotelData=tempArray;
       const snackBarRef=this.snackBar.open("Hotel Deleted");
+      this.selectedRow= null;
     }
   });
+  }
+  else{
+    const snackBarRef=this.snackBar.open("Please Select Hotel");
   }
   }
 
