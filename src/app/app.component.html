@@ -1,13 +1,15 @@
-<mat-toolbar [ngClass]="'app-toolbar'">
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <p>HARS</p>
+<div class="example-container">
+
+<mat-toolbar role="heading" [ngClass]="'app-toolbar'">
+        <button mat-icon-button (click)="snav.toggle()" (click)="CheckRoute()"><mat-icon>menu</mat-icon></button>
+        <h1>HARS (Hotel Administration & Reservation System)</h1>
 </mat-toolbar>
 
 
-<mat-sidenav-container>
+<mat-sidenav-container [ngClass]="'container'">
     <mat-sidenav #snav mode="side" opened>
-        <mat-list *ngFor="let item of menuData">
-            <a mat-button routerLink="/{{item.path}}">{{item.item}}</a>
+        <mat-list *ngFor="let item of menuData" >
+            <a mat-button routerLink="/{{item.path}}" routerLinkActive="mat-primary"><mat-icon>{{item.icon}}</mat-icon>{{item.item}}</a>
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content [ngClass]="'navcontent'">
@@ -15,3 +17,5 @@
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+</div>

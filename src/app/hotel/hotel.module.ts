@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import { HotelFormComponent } from './hotel-form/hotel-form.component';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/materia
       MatTableModule,
       HotelFormModule,
       MatSnackBarModule,
-      DeleteConfirmModule
+      DeleteConfirmModule,
+      MatPaginatorModule
   ],
   entryComponents:[
     HotelFormComponent,

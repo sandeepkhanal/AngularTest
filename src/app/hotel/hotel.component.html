@@ -10,7 +10,9 @@
   Click me!
 </button> -->
 
-<table mat-table [dataSource]="hotelData">
+<h1>Hotel</h1>
+
+<table mat-table [dataSource]="hotelData" class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name </th>
@@ -37,10 +39,11 @@
           <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
     </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;let i=index" [ngClass]="{'highlight': selectedRow == i}"(click)="onRowClick(i)"></tr>
   
   </table>
+  <mat-paginator [length]=3 [pageSize]=2 [pageSizeOptions]="[3,5]"></mat-paginator>
   <div>
   <button mat-flat-button color="primary" (click)="onAddClick()">Add</button>
   <button mat-flat-button color="primary" (click)="onEditClick()">Edit</button>

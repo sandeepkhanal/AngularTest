@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HotelFormComponent } from './hotel-form/hotel-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.component';
+import { MatPaginator } from '@angular/material';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class HotelComponent implements OnInit,OnDestroy {
   displayedColumns: string[] = ['name','vat', 'address','available','rating'];
   duration:any;
   constructor(private matDialog: MatDialog, private snackBar: MatSnackBar) { }
+
 
   ngOnInit() {
   }

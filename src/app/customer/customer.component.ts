@@ -1,6 +1,8 @@
 import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomerService } from './customer.service';
+import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
 
 
 @Component({
@@ -12,25 +14,29 @@ export class CustomerComponent implements OnInit,OnDestroy {
   
   selectedRow:number;
   myCustomer = 'Tim';
-  personData: any[]=[
-    {'name':'Tom','age':22,'address':'NY'},
-    {'name':'Shyam','age':12,'address':'MN'},
-    {'name':'Hari','age':25,'address':'FL'},
-    {'name':'Jerry','age':1,'address':'NE'},
-    {'name':'Sushant','age':32,'address':'NY'}
-  ];
-  displayedColumns: string[] = ['name','age', 'address'];
+  personData: any[];
+
+
+
+
+  displayedColumns: string[] = ['firstname','lastname', 'address','contact'];
 
   receivedMessage:string;
-  constructor(private matDialog: MatDialog) { }
+  constructor(private matDialog: MatDialog,private customerService:CustomerService) { }
 
   ngOnInit() {
+    this.customerService.getCustomers().subscribe(response => {
+      this.personData=response;
+    })
+
+    
     
   }
 
   onRowClick(index){
     //this.myCustomer=data.name;
     this.selectedRow=index;
+    console.log(this.personData[this.selectedRow].customerId)
   }
 
   onMessageReceive(event){
@@ -42,7 +48,6 @@ export class CustomerComponent implements OnInit,OnDestroy {
     dialogRef.afterClosed().subscribe(response => {
       if(response){
       const tempArray =[...this.personData];
-      console.log('new data',response);
       tempArray.unshift(response);
       this.personData=tempArray;
       }
@@ -56,9 +61,7 @@ export class CustomerComponent implements OnInit,OnDestroy {
 
   onEditClick(){
     if(this.selectedRow !=null){
-      
     const dialogRef=this.matDialog.open(CustomerFormComponent,{data:this.personData[this.selectedRow]});
-
     dialogRef.afterClosed().subscribe(response => {
       if(response){
         //this.personData[this.selectedIndex]={...response};
@@ -72,13 +75,19 @@ export class CustomerComponent implements OnInit,OnDestroy {
 
   onDeleteClick(){
     if(this.selectedRow!=null){
-    const tempArray=[...this.personData];
-    tempArray.splice(this.selectedRow,1);
-    this.personData=tempArray;
-    console.log('hey');
+    const dialogRef=this.matDialog.open(DeleteCustomerComponent);
+    dialogRef.afterClosed().subscribe(response => {
+    if(response==true){
+    this.customerService.deleteCustomer(this.personData[this.selectedRow].customerId).subscribe(response =>{
+      const tempArray=[...this.personData];
+      tempArray.splice(this.selectedRow,1);
+      this.personData=tempArray;
+      this.selectedRow=null;
+    })
     }
+  });
   }
-
+  }
 
   ngOnDestroy(): void {
   }
